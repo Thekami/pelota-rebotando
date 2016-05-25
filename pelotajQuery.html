@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8"/>
+
+    <title>Pelota rebotando</title>
+
+    <style>
+        #imagen {
+            /*border:1px solid #808080;*/
+            background-color: red;
+            border-radius:15px;
+            position:relative;
+            display:block;
+            height:20px;
+            width:20px;
+        }
+ 
+        #container {
+            width:300px;
+            height:200px;
+            border:1px solid #000;
+            overflow: hidden;
+        }
+
+    </style>
+
+ 
+    <script src="jquery.min.js"></script>
+    <script type="text/javascript">
+
+
+        $(document).ready(function(){
+            // posicionamos la pelota de manera aleatoria en la pantalla
+
+            y = Math.floor((Math.random() * ($('#container').outerHeight()-22)));
+
+            x = Math.floor((Math.random() * ($('#container').outerWidth()-22)));
+
+
+             $('#imagen').css({
+                'left': x+'px',
+                'top': y+'px'
+            })
+
+        })
+
+        // controlY, determina dirección vertical: 1-baja|0-sube
+        var controlY = Math.floor(Math.random());
+
+        // controlX, determina dirección vertical: 1-derecha|0-izquierda
+        var controlX = Math.floor(Math.random());
+
+        // definimos las variables que contienen la posicion de la pelota
+        var x = 0
+        var y = 0;
+
+        // definimos la velocidad de movimiento en pixels
+        var velocidad = 3;
+
+        // variable que contiene 
+        var idSetInterval=0;
+
+        // funcion que se ejecuta al pulsar el botón iniciar
+        function iniciar()
+
+        {
+            if(idSetInterval == 0)
+                idSetInterval = setInterval("mover()",10); 
+
+        }
+
+ 
+
+        // funcion que se ejecuta por cada iteracion del setInterval()
+
+        function mover()
+        {
+            // vertical
+            if(controlY==1)
+                y+=velocidad;
+            else
+                y-=velocidad;
+            
+
+            if(y<0){
+
+                controlY=1;
+                y=velocidad;
+
+            }else if(y >= $('#container').outerHeight()-22){
+
+                controlY=0;
+                y = $('#container').outerHeight()-22;
+            }
+
+            // horizontal
+            if(controlX==1)
+                x += velocidad;
+            else
+                x -= velocidad;
+
+            
+
+            if(x<0){
+
+                controlX=1;
+                x=velocidad;
+
+            }else if(x >= $('#container').outerWidth()-22){
+
+                controlX=0;
+                x = $('#container').outerWidth()-22;
+            }
+
+            $('#imagen').css({
+                'left': x+'px',
+                'top': y+'px'
+            })
+
+
+        }
+
+        // funcion que se ejecuta para parar
+        function parar(){
+
+            clearInterval(idSetInterval);
+            idSetInterval=0;
+
+        }
+
+
+    </script>
+</head>
+
+ 
+
+<body>
+
+    <h1>Pelota rebotando</h1>
+    <div>
+        <div>
+            <button id="iniciar" onclick="iniciar()">Iniciar</button>
+            <button id="parar" onclick="parar()">Parar</button>
+        </div>
+        <div id="container">
+            <div id="imagen"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
