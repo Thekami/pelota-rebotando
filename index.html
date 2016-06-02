@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Pelota rebotando</title>
+
+	<style type="text/css">
+		body{
+			font-family: Arial;
+		}
+		
+		table{
+			border:0;
+		}
+		thead{
+			background-color: rgb(227,223,215);
+		}
+		th{
+			padding: 3px 10px;
+		}
+		.container{
+			width:800px;
+			height: 500px;
+			border: 1px solid black;
+		}
+		.ball{
+			width: 10px;
+			height: 10px;
+			background-color: red;
+			border: 1px solid black;
+			border-radius: 5px;
+			position: relative; 
+			left: 0px;
+			top: 0px;
+		}
+	</style>
+
+</head>
+<body>
+	
+	<table>
+		<tr>
+			<thead>
+				<tr>
+					<th>Velocidad</th>
+					<th>Tamaño</th>
+					<th>Toques</th>
+					<th>Progreso</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="subheader">
+					<td><input type="range" id="idVel" min="1" max="10" value="1" step="1">
+					<td><input type="range" id="idTam" min="0" max="50" value="0" step="10">
+					<td><input type="text" id="idRebotes">
+					<td><progress value="0" min="1" max="10" id="idPB"></progress><br>
+					<button id="iniciar">Iniciar</button>
+	            	<!-- <button id="parar" onclick="parar()">Parar</button> -->
+	</table>
+
+	<div class="container" id="container">
+	    <div class="ball" id="imagen"></div>
+	</div>
+
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="bouncer.js"></script>
+</body>
+</html>
+
+
